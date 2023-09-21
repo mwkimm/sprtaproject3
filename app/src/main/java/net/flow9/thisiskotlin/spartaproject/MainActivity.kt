@@ -1,48 +1,64 @@
 package net.flow9.thisiskotlin.spartaproject
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.animation.AlphaAnimation
-import android.widget.GridView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
+import net.flow9.thisiskotlin.spartaproject.Model.SearchModel
+import net.flow9.thisiskotlin.spartaproject.Save.SaveFragment
+import net.flow9.thisiskotlin.spartaproject.Search.SearchFragment
 import net.flow9.thisiskotlin.spartaproject.databinding.ActivityMainBinding
-import net.flow9.thisiskotlin.spartaproject.databinding.GridViewLayoutBinding
-import net.flow9.thisiskotlin.spartaproject.databinding.ViewPagerLayoutBinding
+
 
 class MainActivity : AppCompatActivity() {
 
-    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
-    private val viewPager2: ViewPager2 by lazy { binding.includedViewpager.viewPager }
-    private val gridView: GridView by lazy { binding.includedGridview.gridview}
+    private lateinit var binding: ActivityMainBinding
+
+    var likedItems: ArrayList<SearchModel> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewPager2.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-
-        val fragmentList = listOf(SearchFragment(), SaveFragment())
-        val pagerAdapter = MyPagerAdapter(this@MainActivity, fragmentList)
-        viewPager2.adapter = pagerAdapter
-
-
-        val adapter = MyAdapter(this, ItemList)
-        gridView.adapter = adapter
-
-
-        binding.fragmentBtn1.setOnClickListener {
-            viewPager2.currentItem = 0
+        binding.run {
+            btnSearchFragment.setOnClickListener {
+                setFragment(SearchFragment())
+            }
+            btnSaveFragment.setOnClickListener {
+                setFragment(SaveFragment())
+            }
         }
 
-        binding.fragmentBtn2.setOnClickListener {
-            viewPager2.currentItem = 1
-        }
+        setFragment(SearchFragment())
 
 
     }
+
+    private fun setFragment(frag: Fragment) {
+        supportFragmentManager.commit {
+            replace(R.id.frameLayout, frag)
+            setReorderingAllowed(true)
+            addToBackStack(null)
+        }
+    }
+
+    fun addLikedItem(item: SearchModel){
+        if(!likedItems.contains(item)){
+            likedItems.add(item)
+        }
+    }
+
+    fun removeLikedItem(item: SearchModel){
+        likedItems.remove(item)
+    }
+
+
 }
+
+
+
+
+
