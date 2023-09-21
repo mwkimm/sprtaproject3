@@ -43,7 +43,6 @@ class SaveAdapter(var Context: Context) : RecyclerView.Adapter<RecyclerView.View
         return items.size
     }
 
-
     inner class ItemViewHolder(binding: SearchItemBinding) : RecyclerView.ViewHolder(binding.root) {
         var iv_load_image: ImageView = binding.ivLoadImage
         var iv_like: ImageView = binding.ivLike

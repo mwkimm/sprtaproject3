@@ -5,12 +5,15 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#BFD3F6"
+    android:layout_marginStart="10dp"
     tools:context=".Save.SaveFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview_save"
+        android:id="@+id/recyclerview_saveResult"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:scrollbars="vertical"
@@ -21,6 +24,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/save_ScrollUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/white"
+        android:elevation="0dp"
+        android:hapticFeedbackEnabled="true"
+        android:src="@drawable/ic_arrow_up"
+        app:borderWidth="0dp"
+        android:visibility="invisible"
+        app:elevation="0dp"
+        app:fabCustomSize="40dp"
+        app:fabSize="normal"
+        app:maxImageSize="40dp"
+        app:tint="@null"
+        tools:ignore="ContentDescription"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

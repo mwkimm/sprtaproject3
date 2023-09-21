@@ -61,20 +61,20 @@ class SearchFragment : Fragment() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if (!binding.recyclerviewSearchResult.canScrollVertically(-1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    binding.ScrollUp.startAnimation(fadeOut)
-                    binding.ScrollUp.visibility = View.GONE
+                    binding.searchScrollUp.startAnimation(fadeOut)
+                    binding.searchScrollUp.visibility = View.GONE
                     isTop = true
                 } else {
                     if (isTop) {
-                        binding.ScrollUp.visibility = View.VISIBLE
-                        binding.ScrollUp.startAnimation(fadeIn)
+                        binding.searchScrollUp.visibility = View.VISIBLE
+                        binding.searchScrollUp.startAnimation(fadeIn)
                         isTop = false
                     }
                 }
             }
         })
 
-        binding.ScrollUp.setOnClickListener {
+        binding.searchScrollUp.setOnClickListener {
             binding.recyclerviewSearchResult.smoothScrollToPosition(0)
         }
 
@@ -96,7 +96,6 @@ class SearchFragment : Fragment() {
 
 
     private fun setupListeners() {
-
         binding.tvSearch.setOnClickListener {
 
             val query = binding.etSearch.text.toString()
@@ -118,7 +117,6 @@ class SearchFragment : Fragment() {
 
         }
 
-
     }
 
     private fun fetchImageResults(query: String) {
@@ -133,7 +131,6 @@ class SearchFragment : Fragment() {
                                 val datetime = document.datetime
                                 val url = document.thumbnailUrl
                                 restItems.add(SearchModel(title, datetime, url))
-
                             }
                         }
                     }

@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        //초기 프래그먼트로
         setFragment(SearchFragment())
 
 

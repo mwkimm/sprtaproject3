@@ -33,7 +33,12 @@ class SearchAdapter(private val Context: Context): RecyclerView.Adapter<SearchAd
         Glide.with(Context)
             .load(currentItem.url)
             .into(holder.iv_load_image)
-        holder.iv_like.visibility = if (currentItem.isLike) View.VISIBLE else View.INVISIBLE
+        //holder.iv_like.visibility = if (currentItem.isLike) View.VISIBLE else View.INVISIBLE
+        if(currentItem.isLike){
+            holder.iv_like.visibility = View.VISIBLE
+        } else{
+            holder.iv_like.visibility = View.INVISIBLE
+        }
         holder.tv_title.text = currentItem.title
         holder.tv_datetime.text = getDateFromTimestampWithFormat(
             currentItem.dateTime,
