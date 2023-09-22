@@ -3,11 +3,14 @@ package net.flow9.thisiskotlin.spartaproject.Search
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
+import android.view.KeyEvent.KEYCODE_ENTER
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -51,6 +54,38 @@ class SearchFragment : Fragment() {
 
         setupViews()
         setupListeners()
+
+
+        binding.etSearch.setOnKeyListener { v, keyCode, event ->
+            //if(event.action == KeyEvent.ACTION_DOWN && keyCode == KEYCODE_ENTER){
+              if((keyCode == KEYCODE_ENTER)){
+                  val keyword:String by lazy{
+                      if(binding.etSearch.text.toString().isNullOrEmpty()){
+                          return@lazy ""
+                      } else{
+                          return@lazy ""
+                      }
+                  }
+              binding.tvSearch.requestFocus()
+              binding.tvSearch.performClick()
+            }
+            return@setOnKeyListener false
+        }  //검색창에서 엔터키치면 검색 테스트뷰로 넘어가는 기능
+
+
+//        binding.etSearch.setOnEditorActionListener { v, actionId, event ->
+//            Log.d("actionId", "${actionId}, ${event.keyCode}")
+//                if (actionId == EditorInfo.IME_ACTION_DONE ||
+//                    event.action == KeyEvent.ACTION_DOWN ||
+//                    event.keyCode == KEYCODE_ENTER) {
+//                binding.tvSearch.requestFocus()
+//                binding.tvSearch.performClick()
+//                true
+//            } else {
+//                false
+//            }
+//        }      //검색창에서 엔터키치면 검색 테스트뷰로 넘어가는 기능
+
 
         val fadeIn = AlphaAnimation(0f, 1f).apply { duration = 500 }
         val fadeOut = AlphaAnimation(1f, 0f).apply { duration = 500 }
